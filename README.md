@@ -1,0 +1,5 @@
+# JavaRush
+Some text
+кириллица
+♐️
+🇷🇺
