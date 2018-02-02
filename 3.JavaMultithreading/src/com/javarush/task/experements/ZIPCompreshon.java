@@ -12,7 +12,7 @@ public class ZIPCompreshon {
 
     // /Users/admin/Desktop/XML Sitemap.xml
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // как и в прошлый статьях, мы будем использовать для сжатия карту моего сайта
         String file     = "/Users/admin/Desktop/XML Sitemap.xml";
         String gzipFile = "/Users/admin/Desktop/XML Sitemap.xml.gz";
@@ -24,15 +24,8 @@ public class ZIPCompreshon {
         // распаковка файла с помощью GZIP
         decompressGzipFile(gzipFile, newFile);
 
-
-
-        try{
-            Files.lines(Paths.get(newFile))
-                    .forEach(System.out::println);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Files.lines(Paths.get(newFile))
+                .forEach(System.out::println);
     }
 
     // архивация файла с помощью GZIP
@@ -40,12 +33,15 @@ public class ZIPCompreshon {
 
         try(FileInputStream fis     = new FileInputStream(file);
             GZIPOutputStream gzipOS = new GZIPOutputStream(new FileOutputStream(gzipFile))){
+//            byte[] buffer = new byte[1024];
+//            int len;
+//
+//            while((len=fis.read(buffer)) != -1)
+//                gzipOS.write(buffer, 0, len);
+            fis.transferTo(gzipOS);
+            gzipOS.write(fis.readAllBytes());
 
-            byte[] buffer = new byte[1024];
-            int len;
-
-            while((len=fis.read(buffer)) != -1)
-                gzipOS.write(buffer, 0, len);
+            Files.copy(Paths.get(file), gzipOS);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,12 +53,15 @@ public class ZIPCompreshon {
 
         try (GZIPInputStream gis    = new GZIPInputStream(new FileInputStream(gzipFile));
              FileOutputStream fos   = new FileOutputStream(newFile)) {
+//            byte[] buffer = new byte[1024];
+//            int len;
+//
+//            while((len = gis.read(buffer)) != -1)
+//                fos.write(buffer, 0, len);
+            gis.transferTo(fos);
+            fos.write(gis.readAllBytes());
 
-            byte[] buffer = new byte[1024];
-            int len;
-
-            while((len = gis.read(buffer)) != -1)
-                fos.write(buffer, 0, len);
+            Files.copy(gis,Paths.get(newFile));
 
         } catch (IOException e) {
             e.printStackTrace();
