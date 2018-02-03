@@ -1,4 +1,4 @@
-package com.javarush.task.experements;
+package com.javarush.task.experements.zipFiles;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -33,11 +33,7 @@ public class ZIPCompreshon {
 
         try(FileInputStream fis     = new FileInputStream(file);
             GZIPOutputStream gzipOS = new GZIPOutputStream(new FileOutputStream(gzipFile))){
-//            byte[] buffer = new byte[1024];
-//            int len;
-//
-//            while((len=fis.read(buffer)) != -1)
-//                gzipOS.write(buffer, 0, len);
+
             fis.transferTo(gzipOS);
             gzipOS.write(fis.readAllBytes());
 
@@ -53,13 +49,9 @@ public class ZIPCompreshon {
 
         try (GZIPInputStream gis    = new GZIPInputStream(new FileInputStream(gzipFile));
              FileOutputStream fos   = new FileOutputStream(newFile)) {
-//            byte[] buffer = new byte[1024];
-//            int len;
-//
-//            while((len = gis.read(buffer)) != -1)
-//                fos.write(buffer, 0, len);
-            gis.transferTo(fos);
-            fos.write(gis.readAllBytes());
+
+//            gis.transferTo(fos);
+//            fos.write(gis.readAllBytes());
 
             Files.copy(gis,Paths.get(newFile));
 
