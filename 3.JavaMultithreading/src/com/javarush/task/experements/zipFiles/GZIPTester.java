@@ -30,15 +30,6 @@ public class GZIPTester {
         if (Desktop.isDesktopSupported())
             Desktop.getDesktop().open(deCompressedFile.toFile());
 
-
-
-
-
-
-
-
-
-
     }
 
     public static Path compressURLfile(String urlString){
