@@ -1,4 +1,4 @@
-package com.javarush.task.experements.RTTI.philosophyOfJava;
+package com.javarush.task.experements.proxy.fromPhilosophyOfJava;
 
 interface Interface {
     void doSomething();

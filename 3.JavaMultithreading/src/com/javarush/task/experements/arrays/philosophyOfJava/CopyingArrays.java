@@ -1,7 +1,12 @@
 //: arrays/CopyingArrays.java
 // Using System.arraycopy()
 package com.javarush.task.experements.arrays.philosophyOfJava;
-import java.util.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.util.Arrays;
 
 public class CopyingArrays {
   public static void main(String[] args) {
@@ -40,13 +45,33 @@ public class CopyingArrays {
       System.arraycopy(v, 0, u, u.length/2, v.length);
       System.out.println("u = " + Arrays.toString(u));
   }
-} /* Output:
-i = [47, 47, 47, 47, 47, 47, 47]
-j = [99, 99, 99, 99, 99, 99, 99, 99, 99, 99]
-j = [47, 47, 47, 47, 47, 47, 47, 99, 99, 99]
-k = [47, 47, 47, 47, 47]
-i = [103, 103, 103, 103, 103, 47, 47]
-u = [47, 47, 47, 47, 47, 47, 47, 47, 47, 47]
-v = [99, 99, 99, 99, 99]
-u = [47, 47, 47, 47, 47, 99, 99, 99, 99, 99]
-*///:~
+    public static byte[] readAllBytes(RandomAccessFile input) throws IOException {
+        int bufferSize = 10;
+        byte[] result = new byte[0];
+        byte[] buffer = new byte[bufferSize];
+        int countOfReadBytes;
+
+        while ((countOfReadBytes = input.read(buffer, 0, buffer.length)) > 0) {
+            byte[] newResult = new byte[result.length + countOfReadBytes];
+            System.arraycopy(result, 0, newResult, 0, result.length);
+            System.arraycopy(buffer, 0, newResult, result.length, countOfReadBytes);
+            result = newResult;
+        }
+
+        return  result;
+    }
+
+    public static byte[] readAllBytes(InputStream in) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        int bufferSize = 10;
+        byte[] buffer = new byte[bufferSize];
+        int count;
+
+        while ((count = in.read(buffer))>0)
+            baos.write(buffer,0,count);
+
+        return baos.toByteArray();
+    }
+
+}

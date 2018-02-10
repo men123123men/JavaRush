@@ -7,16 +7,13 @@ public class University extends Student {
     }
 
     public Student getStudentWithAverageGrade() {
-        //TODO:
         return null;
     }
 
     public Student getStudentWithMaxAverageGrade(double averageGrade) {
-        //TODO:
         return null;
     }
 
     public void getStudentWithMinAverageGradeAndExpel() {
-        //TODO:
     }
 }

@@ -1,4 +1,4 @@
-package com.javarush.task.experements.RTTI.philosophyOfJava;
+package com.javarush.task.experements.proxy.fromPhilosophyOfJava;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -15,11 +15,8 @@ class DynamicProxyHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.printf("\t\t**** proxy. %s, method { %-42s }, args %8s%n",
                 proxy.getClass().getSimpleName(), method.toString().replaceAll("\\w+\\.",""), Arrays.toString(args));
-//        if(args != null)
-//            for(Object arg : args)
-//                System.out.println(" " + arg);
+
         return method.invoke(proxied, args);
-//        return "return";
     }
 }
 
@@ -35,7 +32,6 @@ class SimpleDynamicProxy {
 
         // Вставляєм посредника и вызываем снова:
         Interface proxy = (Interface) Proxy.newProxyInstance(
-
                 Interface.class.getClassLoader(),
                 new Class[]{Interface.class},
                 new DynamicProxyHandler(real)
