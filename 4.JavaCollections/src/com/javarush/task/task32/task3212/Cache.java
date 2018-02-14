@@ -31,7 +31,6 @@ public class Cache {
 //        }
 //        if (!exists)
 //            services.add(newService);
-
         boolean absent = services.stream()
                 .noneMatch(service -> service.getName().equalsIgnoreCase(newService.getName()));
         if (absent)
