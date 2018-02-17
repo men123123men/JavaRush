@@ -90,6 +90,8 @@ public class Tetris {
             field.removeFullLines();        //удаляем заполненные линии
 
             figure = FigureFactory.createRandomFigure(field.getWidth() / 2, 0); //создаем новую фигурку
+
+
         }
     }
 
@@ -111,5 +113,7 @@ public class Tetris {
     public static void main(String[] args) throws Exception {
         game = new Tetris(10, 20);
         game.run();
+
+
     }
 }
