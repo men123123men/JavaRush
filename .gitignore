@@ -3,3 +3,6 @@
 out\
 JavaRushTasks.iml
 .gitignore
+JavaRushPlugin.properties
+out.log
+Инструкция.png
