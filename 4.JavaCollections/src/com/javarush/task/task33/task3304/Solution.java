@@ -30,7 +30,6 @@ public class Solution {
         System.out.println(jsonString);
 
         return mapper.readValue(jsonString,resultClassObject);
-//        return "";
     }
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,  property="className")

@@ -7,15 +7,17 @@ module JavaCollections {
 
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
 
 
     exports com.javarush.task.task33.task3301 to com.fasterxml.jackson.databind;
     exports com.javarush.task.task33.task3302 to com.fasterxml.jackson.databind;
     exports com.javarush.task.task33.task3303 to com.fasterxml.jackson.databind;
     exports com.javarush.task.task33.task3304 to com.fasterxml.jackson.databind;
-//    exports com.javarush.task.task33.task3305 to com.fasterxml.jackson.databind;
-//    exports com.javarush.task.task33.task3306 to com.fasterxml.jackson.databind;
-//    exports com.javarush.task.task33.task3307 to com.fasterxml.jackson.databind;
+    exports com.javarush.task.task33.task3305 to com.fasterxml.jackson.databind;
+      opens com.javarush.task.task33.task3311 to com.fasterxml.jackson.databind;
+    exports com.javarush.task.task33.task3312 to com.fasterxml.jackson.databind;
+    exports com.javarush.task.task33.task3313 to com.fasterxml.jackson.databind;
 //    exports com.javarush.task.task33.task3308 to com.fasterxml.jackson.databind;
 //    exports com.javarush.task.task33.task3309 to com.fasterxml.jackson.databind;
 
